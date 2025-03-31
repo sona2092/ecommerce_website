@@ -50,7 +50,7 @@ export const singleFilter=[
   },
   {
     id: "disccout",
-    name: "Disccount Range",
+    name: "Discount Range",
     options: [
       {
         value: "10",

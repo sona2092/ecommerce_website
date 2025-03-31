@@ -332,7 +332,7 @@ export default function ProductDetails() {
 
         {/* rating and review section */}
         <section className="">
-          <h1 className="font-semibold text-lg pb-4">
+          <h1 className="font-semibold text-lg pb-4 px-5">
             Recent Review & Ratings
           </h1>
 
@@ -370,15 +370,12 @@ export default function ProductDetails() {
                     </Grid>
                     <Grid xs={7}>
                       <LinearProgress
-                        className=""
+                        className="sm:ml-5 lg:ml-0"
                         sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
                         variant="determinate"
                         value={40}
                         color="success"
                       />
-                    </Grid>
-                    <Grid xs={2}>
-                      <p className="opacity-50 p-2">19259</p>
                     </Grid>
                   </Grid>
                 </Box>
@@ -394,16 +391,16 @@ export default function ProductDetails() {
                     </Grid>
                     <Grid xs={7}>
                       <LinearProgress
-                        className=""
+                        className="sm:ml-5 lg:ml-0"
                         sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
                         variant="determinate"
                         value={30}
                         color="success"
                       />
                     </Grid>
-                    <Grid xs={2}>
+                    {/* <Grid xs={2}>
                       <p className="opacity-50 p-2">19259</p>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                 </Box>
                 <Box>
@@ -418,15 +415,12 @@ export default function ProductDetails() {
                     </Grid>
                     <Grid xs={7}>
                       <LinearProgress
-                        className="bg-[#885c0a]"
+                        className="bg-[#885c0a] sm:ml-5 lg:ml-0"
                         sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
                         variant="determinate"
                         value={25}
                         color="orange"
                       />
-                    </Grid>
-                    <Grid xs={2}>
-                      <p className="opacity-50 p-2">19259</p>
                     </Grid>
                   </Grid>
                 </Box>
@@ -438,11 +432,11 @@ export default function ProductDetails() {
                     gap={2}
                   >
                     <Grid xs={2}>
-                      <p className="p-0">Avarage</p>
+                      <p className="p-0">Average</p>
                     </Grid>
                     <Grid xs={7}>
                       <LinearProgress
-                        className=""
+                        className="sm:ml-5 lg:ml-0"
                         sx={{
                           bgcolor: "#d0d0d0",
                           borderRadius: 4,
@@ -455,9 +449,6 @@ export default function ProductDetails() {
                         value={21}
                         color="success"
                       />
-                    </Grid>
-                    <Grid xs={2}>
-                      <p className="opacity-50 p-2">19259</p>
                     </Grid>
                   </Grid>
                 </Box>
@@ -473,15 +464,12 @@ export default function ProductDetails() {
                     </Grid>
                     <Grid xs={7}>
                       <LinearProgress
-                        className=""
+                        className="sm:ml-5 lg:ml-0"
                         sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
                         variant="determinate"
                         value={10}
                         color="error"
                       />
-                    </Grid>
-                    <Grid xs={2}>
-                      <p className="opacity-50 p-2">19259</p>
                     </Grid>
                   </Grid>
                 </Box>
@@ -492,9 +480,9 @@ export default function ProductDetails() {
 
         {/* similer product */}
         <section className=" pt-10">
-          <h1 className="py-5 text-xl font-bold">Similar Products</h1>
+          <h1 className="px-5 py-5 text-xl font-bold">Similar Products</h1>
           <div className="flex flex-wrap space-y-5">
-            {gounsPage1 .map((item) => (
+            {gounsPage1.map((item) => (
               <HomeProductCard product={item} />
             ))}
           </div>

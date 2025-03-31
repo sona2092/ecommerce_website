@@ -19,9 +19,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {
-  findProducts,
-} from "../../../../Redux/Customers/Product/Action";
+import { findProducts } from "../../../../Redux/Customers/Product/Action";
 import { Backdrop, CircularProgress } from "@mui/material";
 
 function classNames(...classes) {
@@ -185,12 +183,12 @@ export default function Product() {
                   </div>
 
                   {/* Filters */}
-                  <form className="mt-4 border-t border-gray-200">
+                  <form className="mt-4 border-b border-t border-gray-200">
                     {filters.map((section) => (
                       <Disclosure
                         as="div"
                         key={section.id}
-                        className="border-t border-gray-200 px-4 py-6"
+                        className="border-b border-gray-200 px-4 py-6"
                         // open={false}
                       >
                         {({ open }) => (
@@ -243,6 +241,59 @@ export default function Product() {
                                   </div>
                                 ))}
                               </div>
+                            </Disclosure.Panel>
+                          </>
+                        )}
+                      </Disclosure>
+                    ))}
+                    {singleFilter.map((section) => (
+                      <Disclosure
+                        // defaultOpen={true}
+                        as="div"
+                        key={section.id}
+                        className="border-b border-gray-200 py-6 px-4"
+                      >
+                        {({ open }) => (
+                          <>
+                            <h3 className="-my-3 flow-root">
+                              <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-gray-400 hover:text-gray-500">
+                                <span className="font-semibold text-gray-900">
+                                  {section.name}
+                                </span>
+                                <span className="ml-6 flex items-center">
+                                  {open ? (
+                                    <MinusIcon
+                                      className="h-5 w-5"
+                                      aria-hidden="true"
+                                    />
+                                  ) : (
+                                    <PlusIcon
+                                      className="h-5 w-5"
+                                      aria-hidden="true"
+                                    />
+                                  )}
+                                </span>
+                              </Disclosure.Button>
+                            </h3>
+                            <Disclosure.Panel className="pt-6">
+                              <FormControl>
+                                <RadioGroup
+                                  aria-labelledby="demo-radio-buttons-group-label"
+                                  defaultValue="female"
+                                  name="radio-buttons-group"
+                                >
+                                  {section.options.map((option, optionIdx) => (
+                                    <FormControlLabel
+                                      value={option.value}
+                                      control={<Radio />}
+                                      label={option.label}
+                                      onChange={(e) =>
+                                        handleRadioFilterChange(e, section.id)
+                                      }
+                                    />
+                                  ))}
+                                </RadioGroup>
+                              </FormControl>
                             </Disclosure.Panel>
                           </>
                         )}

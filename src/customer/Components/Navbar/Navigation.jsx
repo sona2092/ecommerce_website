@@ -117,127 +117,44 @@ export default function Navigation() {
                   </button>
                 </div>
 
-                {/* Links */}
-                <Tab.Group as="div" className="mt-2">
-                  <div className="border-b border-gray-200">
-                    <Tab.List className="-mb-px flex space-x-8 px-4">
-                      {navigation.categories.map((category) => (
-                        <Tab
-                          key={category.name}
-                          className={({ selected }) =>
-                            classNames(
-                              selected
-                                ? "border-indigo-600 text-indigo-600"
-                                : "border-transparent text-gray-900",
-                              "flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium border-none"
-                            )
-                          }
-                        >
-                          {category.name}
-                        </Tab>
-                      ))}
-                    </Tab.List>
-                  </div>
-                  <Tab.Panels as={Fragment}>
-                    {navigation.categories.map((category) => (
-                      <Tab.Panel
-                        key={category.name}
-                        className="space-y-10 px-4 pb-8 pt-10"
-                      >
-                        <div className="grid grid-cols-2 gap-x-4">
-                          {category.featured.map((item) => (
-                            <div
-                              key={item.name}
-                              className="group relative text-sm"
-                            >
-                              <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                <img
-                                  src={item.imageSrc}
-                                  alt={item.imageAlt}
-                                  className="object-cover object-center"
-                                />
-                              </div>
-                              <a
-                                href={item.href}
-                                className="mt-6 block font-medium text-pink-700"
-                              >
-                                <span
-                                  className="absolute inset-0 z-10"
-                                  aria-hidden="true"
-                                />
-                                {item.name}
-                              </a>
-                              <p aria-hidden="true" className="mt-1">
-                                Shop now
-                              </p>
-                            </div>
-                          ))}
-                        </div>
+                {/* Category Navigation for Mobile */}
+                <div className="px-4 pb-6">
+                  {navigation.categories.map((category) => (
+                    <div key={category.name} className="mb-4">
+                      <p className="font-medium text-gray-900">{category.name}</p>
+                      <ul className="mt-2 space-y-2">
                         {category.sections.map((section) => (
-                          <div key={section.name}>
-                            <p
-                              id={`${category.id}-${section.id}-heading-mobile`}
-                              className="font-medium text-pink-700"
-                            >
-                              {section.name}
-                            </p>
-                            {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
-                            <ul
-                              role="list"
-                              aria-labelledby={`${category.id}-${section.id}-heading-mobile`}
-                              className="mt-6 flex flex-col space-y-6"
-                            >
+                          <li key={section.name} className="text-gray-700">
+                            <p className="font-medium text-gray-700">{section.name}</p>
+                            <ul className="ml-4 space-y-1">
                               {section.items.map((item) => (
-                                <li key={item.name} className="flow-root">
-                                  <p className="-m-2 block p-2 text-gray-500">
+                                <li key={item.name}>
+                                  <button
+                                    className="text-gray-500 hover:text-gray-900"
+                                    onClick={() => handleCategoryClick(category, section, item, () => setOpen(false))}
+                                  >
                                     {item.name}
-                                  </p>
+                                  </button>
                                 </li>
                               ))}
                             </ul>
-                          </div>
+                          </li>
                         ))}
-                      </Tab.Panel>
-                    ))}
-                  </Tab.Panels>
-                </Tab.Group>
-
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  {navigation.pages.map((page) => (
-                    <div key={page.name} className="flow-root">
-                      <a
-                        href={page.href}
-                        className="-m-2 block p-2 font-medium text-gray-900"
-                      >
-                        {page.name}
-                      </a>
+                      </ul>
                     </div>
                   ))}
                 </div>
 
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  <div className="flow-root">
-                    <a
-                      href="/"
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                    >
-                      Sign in
-                    </a>
-                  </div>
-                </div>
-
-                <div className="border-t border-gray-200 px-4 py-6">
-                  <a href="/" className="-m-2 flex items-center p-2">
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-base font-medium text-gray-900">
-                      CAD
-                    </span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
+                {/* Signin/Logout for Mobile */}
+                <div className="px-4 py-6 border-t border-gray-200">
+                  {auth.user ? (
+                    <>
+                      <p className="text-gray-700 font-medium">Hello, {auth.user?.firstName}</p>
+                      <button onClick={handleLogout} className="text-red-500 font-medium">Logout</button>
+                    </>
+                  ) : (
+                    <button onClick={handleOpen} className="text-gray-700 font-medium">Sign In</button>
+                  )}
                 </div>
               </Dialog.Panel>
             </Transition.Child>
