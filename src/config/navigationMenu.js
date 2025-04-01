@@ -42,7 +42,7 @@ export const navigation = {
             { name: 'Wallets', id: 'wallet' },
             { name: 'Bags', id: 'bag' },
             { name: 'Sunglasses', id: 'sunglasse' },
-            { name: 'Hats', id: 'hat' },
+            { name: 'Shoes', id: 'shoes' },
             { name: 'Belts', id: 'belt' },
           ],
         },
